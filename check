@@ -1,0 +1,78 @@
+<?php
+require_once "config.php";
+
+if (isset($_SESSION['user_id'])) {
+    if ($_SESSION['role'] === 'admin') {
+        header("Location: admin/dashboard.php");
+    } else {
+        header("Location: member/dashboard.php");
+    }
+    exit;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>சகல பரிசுத்தவான்களின் ஆலயம்</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <div class="church-header">
+        <div class="church-icon">⛪</div>
+
+        <h1>சகல பரிசுத்தவான்களின் ஆலயம்</h1>
+
+        <p>அணியாபரண நல்லூர்</p>
+    </div>
+
+    <div class="login-box">
+
+        <h2>Login</h2>
+
+        <?php if (isset($_GET['error'])): ?>
+            <div class="error">
+                Username அல்லது Password தவறாக உள்ளது.
+            </div>
+        <?php endif; ?>
+
+        <form action="login.php" method="POST">
+
+            <label>Username</label>
+
+            <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                required
+            >
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                required
+            >
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
